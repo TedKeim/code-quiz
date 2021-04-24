@@ -4,7 +4,7 @@ var questions = [
         answer: "a"
     },
     {
-        prompt: "my second question here?"
+        prompt: "What is CSS?"
     }
 ]
 
@@ -19,6 +19,7 @@ for(var i=0; i < questions.length; i++) {
         alert("Wrong!");
     }
 }
+alert("you got " + score + "/" + questions.length);
 
 
 
