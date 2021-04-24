@@ -94,7 +94,7 @@ let questions = [
 ]
 
 const SCORE_POINTS = 100
-const MAX_QUESTIONS = 4
+const MAX_QUESTIONS = 10
 
 startGame = () => {
     questionCounter = 0
@@ -127,3 +127,32 @@ getNewQuesion = () => {
 
     acceptingAnswers = true
  }
+
+ choices.forEach(choice => {
+     choice.addEventListener('click', e => {
+         if(!acceptingAnswers) return
+         acceptingAnswers = false
+         const selectedChoice = e.target
+         const selectedAnswer = selectedChoice.dataset['number']
+
+         let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+         if(classToApply === 'correct') {
+             incrementScore(SCORE_POINTS)
+         }
+
+         selectedChoice.parentElement.classList.add(classToApply)
+
+         setTimeout(() => {
+             selectedChoice.parentElement.classList.remove(classToApply)
+             getNewQuesion()
+
+         }, 1000)
+     })
+ })
+
+ incrementScore = num => {
+     score +=num
+     scoreText.innerText = score
+ }
+
+ startGame()
