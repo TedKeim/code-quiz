@@ -96,7 +96,7 @@ let questions = [
 
 const SCORE_POINTS = 100
 const MAX_QUESTIONS = 10
-let countDown = 60;
+let countDown = 100;
 
 startGame = () => {
     questionCounter = 0
@@ -173,6 +173,6 @@ getNewQuesion = () => {
      score +=num
      scoreText.innerText = score
  }
- 
+
 countdown();
  startGame();

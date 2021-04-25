@@ -44,6 +44,7 @@ body {
 #time-left {
     font-size: 48px;
     margin-top: 100px;
+    margin-block: auto;
 }
 
 .hud-main-text {
