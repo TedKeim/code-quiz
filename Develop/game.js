@@ -3,6 +3,7 @@ const choices = Array.from(document.querySelectorAll('.choice-text'));
 const progressText = document.querySelector('#progressText');
 const scoreText = document.querySelector('#score');
 const progressBarFull = document.querySelector('#progressBarFull');
+const timeLeft = document.querySelector("#time-left");
 
 let currentQuestion = {}
 let acceptingAnswers = true
@@ -95,12 +96,26 @@ let questions = [
 
 const SCORE_POINTS = 100
 const MAX_QUESTIONS = 10
+let countDown = 60;
 
 startGame = () => {
     questionCounter = 0
     score = 0
     availableQuestions = [...questions]
     getNewQuesion()
+}
+
+function countdown() {
+    let timeInterval = setInterval(function() {
+      if (countDown > 1) {
+        timeLeft.textContent = "Timer : " + countDown;
+        countDown--;
+      } else {
+        timeLeft.textContent = 'Time is up!';
+        clearInterval(timeInterval);
+        return window.location.assign("end.html");
+        }
+    }, 1000);
 }
 
 getNewQuesion = () => {
@@ -136,8 +151,12 @@ getNewQuesion = () => {
          const selectedAnswer = selectedChoice.dataset['number']
 
          let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
          if(classToApply === 'correct') {
              incrementScore(SCORE_POINTS)
+         } else {
+             countDown-=10;
+             timeLeft.textContent = "Timer : " + countDown;
          }
 
          selectedChoice.parentElement.classList.add(classToApply)
@@ -154,5 +173,6 @@ getNewQuesion = () => {
      score +=num
      scoreText.innerText = score
  }
-
- startGame()
+ 
+countdown();
+ startGame();
