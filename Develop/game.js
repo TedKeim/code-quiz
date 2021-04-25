@@ -11,6 +11,8 @@ let score = 0
 let questionCounter = 0
 let availableQuestions = []
 
+/* the following presents the questions */
+
 let questions = [
     {
         question: 'What does HTML stand for?',
@@ -94,9 +96,9 @@ let questions = [
     }
 ]
 
-const SCORE_POINTS = 100
+const SCORE_POINTS = 100 
 const MAX_QUESTIONS = 10
-let countDown = 100;
+let countDown = 100;           /* the countdown controls time left on the timer */
 
 startGame = () => {
     questionCounter = 0
@@ -105,7 +107,7 @@ startGame = () => {
     getNewQuesion()
 }
 
-function countdown() {
+function countdown() {         /* this function controls the timer and takes you back to the home screen when time is out */
     let timeInterval = setInterval(function() {
       if (countDown > 1) {
         timeLeft.textContent = "Timer : " + countDown;
@@ -118,7 +120,7 @@ function countdown() {
     }, 1000);
 }
 
-getNewQuesion = () => {
+getNewQuesion = () => {      
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore', score)
 
@@ -129,7 +131,7 @@ getNewQuesion = () => {
     progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
     progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
 
-    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)     /*this randomizes the choices so the quiz isnt the same each time */
     currentQuestion = availableQuestions[questionsIndex]
     question.innerText = currentQuestion.question
 

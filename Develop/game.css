@@ -29,7 +29,7 @@ body {
     width: 100%;
 }
 
-/* HUD */
+/* HUD timer and score*/
 
 #hud {
     display: flex;
